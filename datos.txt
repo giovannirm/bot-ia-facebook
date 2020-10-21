@@ -1,0 +1,8 @@
+crear entorno
+conda create -n nombre_del_entorno python=3.6 <- version de python a instalar en el entorno
+
+Para saber que paquetes tenemos instalados en nuestro entorno
+(facebook) C:\Users\usuario>pip freeze
+
+recoger variables de heroku con distintos lenguajes
+https://www.youtube.com/watch?v=XL9cNMMJf7A&ab_channel=Heroku
