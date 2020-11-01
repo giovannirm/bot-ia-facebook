@@ -9,7 +9,7 @@ import tflearn
 import tensorflow
 import random
 #Se piensa guardar el modelo de la IA para no estar repitiendo el proceso
-import pickle
+#import pickle
 #Nos va a permitir procesar el lenguaje
 import nltk
 
@@ -186,7 +186,7 @@ def webhook():
 
             cubeta = [0 for _ in range(len(palabras))]
             #entradaProcesada = nltk.word_tokenize(entrada)
-            entradaProcesada = nltk.word_tokenize(mensaje.content)
+            entradaProcesada = nltk.word_tokenize(text_input)
             entradaProcesada = [stemmer.stem(palabra.lower()) for palabra in entradaProcesada]
             for palabraIndividual in entradaProcesada:
                 for i, palabra in enumerate(palabras): 
