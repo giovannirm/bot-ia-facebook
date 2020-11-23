@@ -38,7 +38,7 @@
                 <ul class="list-unstyled">
                     <li><a href="home.html"><i class="zmdi zmdi-home zmdi-hc-fw"></i>&nbsp;&nbsp; Inicio</a></li>                    
                     <li><a href=".html"><i class="zmdi zmdi-trending-up zmdi-hc-fw"></i>&nbsp;&nbsp; Gestión de Enfermedades</a></li>
-                    <li><a href=".html"><i class="zmdi zmdi-accounts zmdi-hc-fw"></i>&nbsp;&nbsp; Clientes</a></li>
+                    <!--<li><a href=".html"><i class="zmdi zmdi-accounts zmdi-hc-fw"></i>&nbsp;&nbsp; Clientes</a></li>-->
                 </ul>
             </div>
         </div>
@@ -50,9 +50,9 @@
                    <img src="{% static 'assets/img/user01.png' %}" alt="user-picture" class="img-responsive img-circle center-box">
                 </figure>
                 <li style="color:#fff; cursor:default;">
-                    <span class="all-tittles">Admin Name</span>
+                    <span class="all-tittles">Admin</span>
                 </li>
-                <li  class="tooltips-general exit-system-button" data-href="login.html" data-placement="bottom" title="Salir del sistema">
+                <li  class="tooltips-general exit-system-button" data-href="{% url 'login' %}" data-placement="bottom" title="Salir del sistema">
                     <i class="zmdi zmdi-power"></i>
                 </li>
                 <li class="mobile-menu-button visible-xs" style="float: left !important;">
