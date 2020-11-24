@@ -16,10 +16,10 @@ def login(request):
 def add_disease(request):
     return render(request,'add_disease.html')
 
-def update_disease(request):
+def update_disease(request, id):
     pass
 
-def delete_disease(request):
+def delete_disease(request, id):
     pass
 
 def read_diseases(request):
