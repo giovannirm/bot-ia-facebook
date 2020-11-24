@@ -1,23 +1,65 @@
 {% extends "layout/base.html" %}
-
+{% load static %}
 {% block title %} Enfermedades Congénitas {% endblock %}
-
 {% block content %}
 <div class="container">
     <div class="page-header">
-      <h1 class="all-tittles">Sistema de gestión <small>Inicio</small></h1>
+      <h1 class="all-tittles">Sistema de gestión <small>enfermedades congénitas</small></h1>
     </div>
 </div>
-<section class="full-reset text-center" style="padding: 40px 0;">
-    <article class="tile">
-        <div class="tile-icon full-reset"><i class="zmdi zmdi-trending-up"></i></div>
-        <div class="tile-name all-tittles">enfermedades congénitas</div>
-        <div class="tile-num full-reset">7</div>
-    </article>
-    <!--<article class="tile">
-        <div class="tile-icon full-reset"><i class="zmdi zmdi-accounts"></i></div>
-        <div class="tile-name all-tittles">clientes</div>
-        <div class="tile-num full-reset">70</div>
-    </article>-->
-</section>
+<div class="container-fluid"  style="margin: 50px 0;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-3">
+            <img src="{% static 'assets/img/virus.png' %}" alt="calendar" class="img-responsive center-box" style="max-width: 110px;">
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+            Bienvenido a esta sección, aquí se muestran todos las enfermedades congénitas en canes registrados hasta la fecha
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 lead">
+            <ol class="breadcrumb">
+                <li><a href="{% url 'add' %}">Nuevo enfermedad congénita</a></li>
+                <li class="active">listado de enfermedades congénitas</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <h2 class="text-center all-tittles">Listado de enfermedades congénitas</h2>
+    <div class="table-responsive">
+        <div class="div-table" style="margin:0 !important;">
+            <div class="div-table-row div-table-row-list" style="background-color:#DFF0D8; font-weight:bold;">
+                <div class="div-table-cell" style="width: 6%;">#</div>
+                <div class="div-table-cell" style="width: 22%;">Nombre de libro</div>
+                <div class="div-table-cell" style="width: 22%;">Nombre de usuario</div>
+                <div class="div-table-cell" style="width: 10%;">Tipo</div>
+                <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
+                <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
+                <div class="div-table-cell" style="width: 8%;">Eliminar</div>
+                <div class="div-table-cell" style="width: 8%;">Ver Ficha</div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <div class="div-table" style="margin:0 !important;">
+            <div class="div-table-row div-table-row-list">
+                <div class="div-table-cell" style="width: 6%;">#</div>
+                <div class="div-table-cell" style="width: 22%;">Nombre de Libro</div>
+                <div class="div-table-cell" style="width: 22%;">Nombre de Usuario</div>
+                <div class="div-table-cell" style="width: 10%;">Tipo</div>
+                <div class="div-table-cell" style="width: 10%;">F. Solicitud</div>
+                <div class="div-table-cell" style="width: 10%;">F. Entrega</div>
+                <div class="div-table-cell" style="width: 8%;">
+                    <button class="btn btn-danger"><i class="zmdi zmdi-delete"></i></button>
+                </div>
+                <div class="div-table-cell" style="width: 8%;">
+                    <button class="btn btn-info"><i class="zmdi zmdi-file-text"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

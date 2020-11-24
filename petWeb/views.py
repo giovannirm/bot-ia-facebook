@@ -12,3 +12,15 @@ def login(request):
         else:
             return redirect('login')
     return render(request,'login.html')
+
+def add_disease(request):
+    return render(request,'add_disease.html')
+
+def update_disease(request):
+    pass
+
+def delete_disease(request):
+    pass
+
+def read_diseases(request):
+    return render(request,'diseases.html')

@@ -1,0 +1,56 @@
+{% extends "layout/base.html" %}
+{% load static %}
+{% block title %} Añadir Enfermedad Congénita {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="page-header">
+      <h1 class="all-tittles">Sistema de gestión <small>enfermedades congénitas</small></h1>
+    </div>
+</div>
+<div class="container-fluid"  style="margin: 50px 0;">
+  <div class="row">
+      <div class="col-xs-12 col-sm-4 col-md-3">
+          <img src="{% static 'assets/img/bacteria.png' %}" alt="user" class="img-responsive center-box" style="max-width: 110px;">
+      </div>
+      <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+          Bienvenido a la sección para registrar nuevas enfermedades congénitas al sistema, debes de llenar todos los campos del siguiente formulario para registrar una enfermedad congénita
+      </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-xs-12 lead">
+          <ol class="breadcrumb">
+              <li class="active">Nuevo enfermedad congénita</li>
+              <li><a href="{% url 'read' %}">listado de enfermedades congénitas</a></li>
+          </ol>
+      </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="container-flat-form">
+      <div class="title-flat-form title-flat-blue">Registrar una nueva enfermedad congénita</div>
+      <form autocomplete="off">
+          <div class="row">
+             <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                  <div class="group-material">
+                      <input type="text" class="material-control tooltips-general" placeholder="Nombre completo" required="" maxlength="70" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,70}" data-toggle="tooltip" data-placement="top">
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>Nombre de la enfermedad congénita</label>
+                  </div>
+                 <div class="group-material">
+                      <input type="text" class="material-control tooltips-general input-check-user" placeholder="Nombre de usuario" required="" maxlength="20" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]{1,20}" data-toggle="tooltip" data-placement="top">
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>Raza del can</label>
+                 </div>
+                  <p class="text-center">                      
+                      <button type="submit" class="btn btn-primary"><i class="zmdi zmdi-floppy"></i> &nbsp;&nbsp; Guardar</button>
+                  </p> 
+             </div>
+         </div>
+      </form>
+  </div>
+</div>
+{% endblock %}
