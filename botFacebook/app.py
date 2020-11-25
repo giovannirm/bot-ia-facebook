@@ -14,7 +14,7 @@ import random
 import nltk
 
 from flask import Flask, request
-from bot import Bot
+from botFacebook.bot import Bot
 from nltk.stem.lancaster import LancasterStemmer
 #Definimos un objeto de la clase LancasterStemmer
 stemmer = LancasterStemmer()
@@ -23,12 +23,15 @@ stemmer = LancasterStemmer()
 #Es un paquete que necesita nltk
 nltk.download('punkt')
 
-PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
-VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN')
-MODE = os.environ.get('MODE')
+#PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
+PAGE_ACCESS_TOKEN = "asgasgfsa"
+#VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN')
+VERIFY_TOKEN = "afasgfasg"
+#MODE = os.environ.get('MODE')
+MODE = "susbcribe"
 
 #Abrimos la librería de respuestas y preguntas que usará la IA 
-with open("contenido.json", encoding = 'utf-8') as archivo:
+with open("botFacebook/contenido.json", encoding = 'utf-8') as archivo:
     datos = json.load(archivo)
     #print(datos)
  

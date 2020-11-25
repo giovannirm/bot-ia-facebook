@@ -2,8 +2,10 @@ import requests
 import json
 import os
 
-FACEBOOK_GRAPH_URL = os.environ.get('FACEBOOK_GRAPH_URL')
-CONTENT_TYPE = os.environ.get('CONTENT_TYPE')
+FACEBOOK_GRAPH_URL = "asfa"
+#FACEBOOK_GRAPH_URL = os.environ.get('FACEBOOK_GRAPH_URL')
+#CONTENT_TYPE = os.environ.get('CONTENT_TYPE')
+CONTENT_TYPE = "zfasf"
 
 class Bot(object):
     def __init__(self, access_token, api_url = FACEBOOK_GRAPH_URL):

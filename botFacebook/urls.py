@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+#from botFacebook.app import webhook, verify
 
 urlpatterns = [
     path('admin/', admin.site.urls),    
+    #path('pepito/', webhook),
+    #path('verify/', verify),
     path('', include('petWeb.urls')),
 ]
