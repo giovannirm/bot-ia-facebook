@@ -6,4 +6,3 @@ class Diseases(models.Model):
     name = models.CharField(max_length=100)
     symptom = models.JSONField()    
     answer = models.CharField(max_length=500)
-    #objects = models.DjongoManager()

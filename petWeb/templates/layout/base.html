@@ -5,20 +5,19 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="Shortcut Icon" type="image/x-icon" href="{% static 'assets/icons/pet.ico' %}" />
-    <script src="{% static 'assets/js/sweet-alert.min.js' %}"></script>
+    <link rel="Shortcut Icon" type="image/x-icon" href="{% static 'assets/icons/pet.ico' %}" />    
     <link rel="stylesheet" href="{% static 'assets/css/sweet-alert.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/material-design-iconic-font.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/jquery.mCustomScrollbar.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
-    <script>window.jQuery || document.write('<script src="{% static 'assets/js/jquery-1.11.2.min.js' %}"><\/script>')</script>
-    <script src="{% static 'assets/js/modernizr.js' %}"></script>
-    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'assets/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-    <script src="{% static 'assets/js/main.js' %}"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
+    <!--Centrar th y tr-->
+    <link rel="stylesheet" href="{% static 'assets/css/centrartabla.css' %}">    
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{% static 'bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css' %}">
 </head>
 <body>
     <div class="navbar-lateral full-reset">
@@ -85,5 +84,50 @@
             <div class="footer-copyright full-reset all-tittles">© 2020 Pet House Villano</div>
         </footer>
     </div>
+    <script src="{% static 'assets/js/sweet-alert.min.js' %}"></script>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+    <script>window.jQuery || document.write('<script src="{% static 'assets/js/jquery-1.11.2.min.js' %}"><\/script>')</script>
+    <script src="{% static 'assets/js/modernizr.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'bower_components/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
+    <script>
+        $('#tbldisease').DataTable({
+        "language": {
+            "lengthMenu": "Mostrar  _MENU_  entrada",
+            "zeroRecords": "No se encontraron resultados en su búsqueda",
+            "info": "Mostrando registros de _START_ al _END_ de un total de _TOTAL_ Enfermedades",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "search": "Buscar : ",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
+        }
+        });
+    </script>
+    <script>
+        readDisease = function (rac_r, nam_r, sym_r, ans_r)
+        {
+            $('#rac_r').val(rac_r);
+            $('#nam_r').val(nam_r);
+            $('#sym_r').val(sym_r);
+            $('#ans_r').val(ans_r);
+        };
+
+        updateDisease = function (id_u, rac_u, nam_u, sym_u, ans_u)
+        {
+            $('#id_u').val(id_u);
+            $('#rac_u').val(rac_u);
+            $('#nam_u').val(nam_u);
+            $('#sym_u').val(sym_u);
+            $('#ans_u').val(ans_u);
+        };
+    </script>
 </body>
 </html>
