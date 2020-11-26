@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/jquery.mCustomScrollbar.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <!-- ScrollBar -->
+    <link rel="stylesheet" href="{% static 'plugins/pace/pace.css' %}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
     <!--Centrar th y tr-->
@@ -84,6 +90,8 @@
             <div class="footer-copyright full-reset all-tittles">© 2020 Pet House Villano</div>
         </footer>
     </div>
+    <!--Cargar scrollbar-->
+    <script src="{% static 'plugins/pace/pace.min.js' %}"></script>
     <script src="{% static 'assets/js/sweet-alert.min.js' %}"></script>
     <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
     <script>window.jQuery || document.write('<script src="{% static 'assets/js/jquery-1.11.2.min.js' %}"><\/script>')</script>
@@ -93,41 +101,6 @@
     <script src="{% static 'assets/js/main.js' %}"></script>
     <script src="{% static 'bower_components/datatables.net/js/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
-    <script>
-        $('#tbldisease').DataTable({
-        "language": {
-            "lengthMenu": "Mostrar  _MENU_  entrada",
-            "zeroRecords": "No se encontraron resultados en su búsqueda",
-            "info": "Mostrando registros de _START_ al _END_ de un total de _TOTAL_ Enfermedades",
-            "infoEmpty": "No existen registros",
-            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "search": "Buscar : ",
-            "paginate": {
-                "first": "Primero",
-                "last": "Ultimo",
-                "next": "Siguiente",
-                "previous": "Anterior"
-            }
-        }
-        });
-    </script>
-    <script>
-        readDisease = function (rac_r, nam_r, sym_r, ans_r)
-        {
-            $('#rac_r').val(rac_r);
-            $('#nam_r').val(nam_r);
-            $('#sym_r').val(sym_r);
-            $('#ans_r').val(ans_r);
-        };
-
-        updateDisease = function (id_u, rac_u, nam_u, sym_u, ans_u)
-        {
-            $('#id_u').val(id_u);
-            $('#rac_u').val(rac_u);
-            $('#nam_u').val(nam_u);
-            $('#sym_u').val(sym_u);
-            $('#ans_u').val(ans_u);
-        };
-    </script>
+    <script src="{% static 'assets/js/configuraciones.js' %}"></script>
 </body>
 </html>

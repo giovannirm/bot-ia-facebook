@@ -60,13 +60,14 @@
                 <td>
                     <center> 
                         <div class="btn-group">
-                        <a onclick='updateDisease(
-                        "{{disease.race}}",
-                        "{{disease.name}}",
-                        "{{disease.symptom}}",
-                        "{{disease.answer}}")' class="btn btn-warning" data-toggle="modal" data-target="#update">
+                        <button onclick='updateDisease(
+                            "{{disease.id}}",
+                            "{{disease.race}}",
+                            "{{disease.name}}",
+                            "{{disease.symptom}}",
+                            "{{disease.answer}}")' class="btn btn-warning" data-toggle="modal" data-target="#update">
                         <span class="fa fa-pencil"></span>
-                        </a>
+                        </button>
                         </div>
                     </center>
                 </td>       
@@ -108,29 +109,35 @@
         </div>
     </div>        
 </div>
-<div class="modal fade" id="update">       
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Modificar datos de la enfermedad congénita</h4>
-            </div>                
-            <div class="modal-body">
-                <div class="form-group">  
-                    <h5 class="box-title">Enfermedad congénita</h5>
-                    <input name="name" class="form-control" type="text" id="nam_u" maxlength="100">
-                    <h5 class="box-title">Raza</h5> 
-                    <input name="race" class="form-control" type="text" id="rac_u" maxlength="30">
-                    <h5 class="box-title">Síntomas</h5>
-                    <input name="symptom" class="form-control" type="text" id="sym_u">
-                    <h5 class="box-title">Respuesta</h5>
-                    <input name="answer" class="form-control" type="text"  id="ans_u">                  
-                </div>       
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-dark pull-left" data-dismiss="modal">Cancelar</button>
-                <a href="{% url 'read' %}" class="btn btn-dark">Actualizar Cambios</a>
-            </div>
-        </div> 
-    </div>        
+
+<div class="modal fade" id="update"> 
+    <form action="{% url 'update' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="id" id="id_u">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Modificar datos de la enfermedad congénita</h4>
+                </div>                        
+                <div class="modal-body">
+                    <div class="form-group">  
+                        <h5 class="box-title">Enfermedad congénita</h5>
+                        <input name="name" class="form-control" type="text" id="nam_u" maxlength="100">
+                        <h5 class="box-title">Raza</h5> 
+                        <input name="race" class="form-control" type="text" id="rac_u" maxlength="30">
+                        <!--<h5 class="box-title">Síntomas</h5>
+                        <input name="symptom" class="form-control" type="text" id="sym_u">-->
+                        <h5 class="box-title">Respuesta</h5>
+                        <input name="answer" class="form-control" type="text"  id="ans_u">                  
+                    </div>       
+                </div>        
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark pull-left" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-dark">Actualizar Cambios</button>
+                </div>
+            </div> 
+        </div>         
+    </form>
 </div>
+
 {% endblock %}

@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 def home(request):
     return render(request,'home.html')
-
+ 
 def login(request):    
     if request.method =='POST':                
         user = request.POST['user']
@@ -26,15 +26,15 @@ def add_disease(request):
     return render(request,'add_disease.html')
 
 @csrf_exempt
-def update_disease(request, id):
+def update_disease(request):
+    id = request.POST.get('id')
     disease = Diseases.objects.get(id = id)
     disease.race = request.POST.get('race')
     disease.name = request.POST.get('name')    
     #disease.symptom = request.POST.get('symptom')
     disease.answer = request.POST.get('answer')
     disease.save()
-    #return redirect('read')
-    return HttpResponse("Disease updated")
+    return redirect('read')
  
 def delete_disease(request, id): 
     if request.method == 'GET':
