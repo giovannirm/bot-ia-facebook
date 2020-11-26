@@ -34,6 +34,7 @@
         <tr>
           <th>Raza</th>
           <th>Enfermedad congénita</th>          
+          <!--<th>Síntomas</th> -->
           <th>Ver</th>
           <th>Modificar</th>
           <th>Eliminar</th>
@@ -43,7 +44,12 @@
             {% for disease in diseases %}
             <tr>
                <td>{{disease.race}}</td>
-               <td>{{disease.name}}</td>               
+               <td>{{disease.name}}</td>
+               <!--<td>
+                {% for symptom in disease.symptom %}   
+                    <li>{{symptom}}</li>
+                {% endfor %}
+               </td>-->
                <td> 
                    <center>
                         <div class="btn-group">                     
