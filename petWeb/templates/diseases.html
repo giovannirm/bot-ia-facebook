@@ -52,6 +52,11 @@
                </td>-->
                <td> 
                    <center>
+                        <!--<div class="btn-group">                     
+                        <a onclick="open_modal_read('{% url 'modal_read' disease.id%}')" class="btn btn-info">
+                        <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                        </div>-->
                         <div class="btn-group">                     
                         <a onclick='readDisease(
                         "{{disease.race}}",
@@ -66,12 +71,7 @@
                 <td>
                     <center> 
                         <div class="btn-group">
-                        <button onclick='updateDisease(
-                            "{{disease.id}}",
-                            "{{disease.race}}",
-                            "{{disease.name}}",
-                            "{{disease.symptom}}",
-                            "{{disease.answer}}")' class="btn btn-warning" data-toggle="modal" data-target="#update">
+                        <button onclick="open_modal_update('{% url 'modal_update' disease.id%}')" class="btn btn-warning">
                         <span class="fa fa-pencil"></span>
                         </button>
                         </div>
@@ -89,61 +89,31 @@
             </tr>
             {% endfor %}
         </tbody>
-      </table>
-  </div>
-  <div class="modal fade" id="read">       
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-aqua-active">
-                <h4 class="modal-title">Datos de la Enfermedad Congénita</h4>
-            </div>                
-            <div class="modal-body">                        
-                <div class="form-group"> 
-                    <h5 class="box-title">Enfermedad congénita</h5>
-                    <input disabled="" class="form-control" type="text" id="nam_r">
-                    <h5 class="box-title">Raza</h5>
-                    <input disabled="" class="form-control" type="text" id="rac_r">
-                    <h5 class="box-title">Síntomas</h5>
-                    <input disabled="" class="form-control" type="text" id="sym_r">
-                    <h5 class="box-title">Respuesta</h5>
-                    <input disabled="" class="form-control" type="text"  id="ans_r">                    
-                </div>                                  
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-dark" data-dismiss="modal">Aceptar</button>
-            </div>                
-        </div>
-    </div>        
-</div>
-
-<div class="modal fade" id="update"> 
-    <form action="{% url 'update' %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="id" id="id_u">
+        </table>
+    </div>
+    <div class="modal fade" id="read">       
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Modificar datos de la enfermedad congénita</h4>
-                </div>                        
-                <div class="modal-body">
-                    <div class="form-group">  
+                <div class="modal-header bg-aqua-active">
+                    <h4 class="modal-title">Datos de la Enfermedad Congénita</h4>
+                </div>                
+                <div class="modal-body">                        
+                    <div class="form-group"> 
                         <h5 class="box-title">Enfermedad congénita</h5>
-                        <input name="name" class="form-control" type="text" id="nam_u" maxlength="100">
-                        <h5 class="box-title">Raza</h5> 
-                        <input name="race" class="form-control" type="text" id="rac_u" maxlength="30">
-                        <!--<h5 class="box-title">Síntomas</h5>
-                        <input name="symptom" class="form-control" type="text" id="sym_u">-->
+                        <input disabled="" class="form-control" type="text" id="nam_r">
+                        <h5 class="box-title">Raza</h5>
+                        <input disabled="" class="form-control" type="text" id="rac_r">
+                        <h5 class="box-title">Síntomas</h5>
+                        <input disabled="" class="form-control" type="text" id="sym_r">
                         <h5 class="box-title">Respuesta</h5>
-                        <input name="answer" class="form-control" type="text"  id="ans_u">                  
-                    </div>       
-                </div>        
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-dark pull-left" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-dark">Actualizar Cambios</button>
+                        <input disabled="" class="form-control" type="text"  id="ans_r">                    
+                    </div>                                  
                 </div>
-            </div> 
-        </div>         
-    </form>
-</div>
-
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Aceptar</button>
+                </div>                
+            </div>
+        </div>        
+    </div>
+    <div class="modal fade" id="update"></div>
 {% endblock %}

@@ -102,10 +102,10 @@ label{
     cursor: pointer;
 }
 select.material-control-login{
-    -ms-appearance: none;
+    -ms-appearance: none; 
     -moz-appearance: none;
     -webkit-appearance: none;
-    background: #444F55 url(../assets/icons/SelectMaterialIndicator-white.png) no-repeat scroll right 0.75rem center / 13px 8px;
+    background: #444F55 url(../icons/SelectMaterialIndicator-white.png) no-repeat scroll right 0.75rem center / 13px 8px;
 }
 select.material-control-login:hover{
     cursor: pointer;

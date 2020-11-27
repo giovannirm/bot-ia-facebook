@@ -8,6 +8,8 @@ urlpatterns = [
     path('update_disease/', update_disease, name = "update"),
     path('delete_disease/<int:id>', delete_disease, name = "delete"),
     path('read_diseases/', read_diseases, name = "read"),    
+    path('modal_update/<int:id>', modal_update, name = "modal_update"),    
+    path('modal_read/<int:id>', modal_read, name = "modal_read"),    
 ]
 
 

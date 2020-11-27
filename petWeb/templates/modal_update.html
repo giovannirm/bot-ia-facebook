@@ -1,0 +1,27 @@
+<form action="{% url 'update' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{id}}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modificar datos de la enfermedad congénita</h4>
+            </div>                        
+            <div class="modal-body">
+                <div class="form-group">  
+                    <h5 class="box-title">Enfermedad congénita</h5>
+                    <input name="name" class="form-control" value="{{name}}" type="text" maxlength="100">
+                    <h5 class="box-title">Raza</h5> 
+                    <input name="race" class="form-control" value="{{race}}" type="text" maxlength="30">
+                    <h5 class="box-title">Síntomas</h5>
+                    <input name="symptom" class="form-control" value="{{symptom}}" type="text">
+                    <h5 class="box-title">Respuesta</h5>
+                    <input name="answer" class="form-control" value="{{answer}}" type="text">
+                </div>       
+            </div>        
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-dark">Actualizar Cambios</button>
+            </div>
+        </div> 
+    </div>         
+</form>
