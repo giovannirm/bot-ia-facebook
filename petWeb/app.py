@@ -14,7 +14,7 @@ import random
 import nltk
 
 from flask import Flask, request
-from botFacebook.bot import Bot
+from petWeb.bot import Bot
 from nltk.stem.lancaster import LancasterStemmer
 #Definimos un objeto de la clase LancasterStemmer
 stemmer = LancasterStemmer()
@@ -31,14 +31,14 @@ VERIFY_TOKEN = "afasgfasg"
 MODE = "susbcribe"
 
 #Abrimos la librería de respuestas y preguntas que usará la IA 
-with open("botFacebook/contenido.json", encoding = 'utf-8') as archivo:
+with open("petWeb/contenido.json", encoding = 'utf-8') as archivo:
     datos = json.load(archivo)
     #print(datos)
  
 #Se almacenarán las palabras    
 palabras = []
 tags = []
-auxX = []
+auxX = [] 
 auxY = []
 
 for contenido in datos["contenido"]:
@@ -98,8 +98,13 @@ documento = hola
 for x, documento in enumerate(auxX):
     cubeta = []
     #Va a realizar el casteo como en el anterior
+    #auxpalabra guarda el arreglo de palabras de un síntoma
     auxPalabra = [stemmer.stem(w.lower()) for w in documento]
+    #palabras guarda todos los síntomas por palabras 
+    #ejm: ['hola','un','saludo','hello','adios','hasta','la','proxima','nos','vemos']
     for w in palabras:
+        #evalúa si la palabra está incluida en el arreglo de palabras
+        # ejm: w = estás    auxPalabra = ['cómo','estás'] 
         if w in auxPalabra:
             cubeta.append(1)
         else:
@@ -120,8 +125,11 @@ salida = numpy.array(salida)
 #tensorflow.compa.v1.reset_default_graph
 tensorflow.reset_default_graph()
 
+#primera columna de entrada que recibirá todas las palabras de cada síntoma
 red = tflearn.input_data(shape = [None, len(entrenamiento[0])])
+#segunda columna con 10 neuronas
 red = tflearn.fully_connected(red, 10)
+#tercera columna con 10 neuronas
 red = tflearn.fully_connected(red, 10)
 red = tflearn.fully_connected(red, len(salida[0]), activation = "softmax")
 red = tflearn.regression(red)
