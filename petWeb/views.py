@@ -5,7 +5,7 @@ import tensorflow
 import json
 import pickle
 
-from flask import request
+#from flask import request
 from django.shortcuts import render, redirect
 from .models import Diseases
 from django.views.decorators.csrf import csrf_exempt
@@ -109,7 +109,6 @@ def modal_read(request, id):
 
 def load_variables():
     stemmer = LancasterStemmer()
-    modelo = ""
     palabras = []
     names = []
     auxX = []
@@ -161,76 +160,78 @@ def load_variables():
 
     modelo = tflearn.DNN(red)
     modelo.fit(entrenamiento, salida, n_epoch = 1000, batch_size = batch_size, show_metric = True)
-    modelo.save("model.tflearn")      
+    modelo.save("model.tflearn")   
 
-def verify():    
-    VERIFY_TOKEN = "TUTOKENCITOPATUCONSUMO"
-    MODE = "subscribe"
-    token = request.args.get('hub.verify_token')
-    challenge = request.args.get('hub.challenge')
-    mode = request.args.get('hub.mode')
+from flask import request
 
-    if mode and token:
-        if mode == MODE and token == VERIFY_TOKEN:            
-            print(f"Webhook verificado:\ntoken: {token}\nchallengue: {challenge}\nmode: {mode}")
-            return str(challenge)
-        else:            
-            caso = 'Token equivocado'
+def webhook(): 
+           
+    if request.method =='GET':
+        VERIFY_TOKEN = "TUTOKENCITOPATUCONSUMO"
+        MODE = "subscribe"
+        token = request.args.get('hub.verify_token')
+        challenge = request.args.get('hub.challenge')
+        mode = request.args.get('hub.mode')
+        
+        if mode and token:
+            if mode == MODE and token == VERIFY_TOKEN:            
+                print(f"Webhook verificado:\ntoken: {token}\nchallengue: {challenge}\nmode: {mode}")
+                return str(challenge)
+            else:            
+                caso = 'Token equivocado'
+                return caso
+        else:        
+            caso = f"No se estableció [<br>mode: {mode},<br> token: {token} ]<br>Suponemos que abrió la url"
             return caso
-    else:        
-        caso = f"No se estableció [<br>mode: {mode},<br> token: {token} ]<br>Suponemos que abrió la url"
-        return caso
 
+    elif request.method =='POST':
+        stemmer = LancasterStemmer()
 
-def webhook():    
+        with open("variables.pickle", "rb") as archivoPickle:
+            palabras, names, entrenamiento, salida = pickle.load(archivoPickle)
+        
+        tensorflow.reset_default_graph()
 
-    stemmer = LancasterStemmer()
+        red = tflearn.input_data(shape = [None, len(entrenamiento[0])])
+        red = tflearn.fully_connected(red, 10)
+        red = tflearn.fully_connected(red, 10)
+        red = tflearn.fully_connected(red, len(salida[0]), activation = "softmax")
+        red = tflearn.regression(red)
 
-    with open("variables.pickle", "rb") as archivoPickle:
-        palabras, names, entrenamiento, salida = pickle.load(archivoPickle)
-    
-    tensorflow.reset_default_graph()
+        modelo = tflearn.DNN(red)
+        modelo.load("model.tflearn")  
 
-    red = tflearn.input_data(shape = [None, len(entrenamiento[0])])
-    red = tflearn.fully_connected(red, 10)
-    red = tflearn.fully_connected(red, 10)
-    red = tflearn.fully_connected(red, len(salida[0]), activation = "softmax")
-    red = tflearn.regression(red)
+        diseases = Diseases.objects.all()
+        data = json.loads(request.data)  
 
-    modelo = tflearn.DNN(red)
-    modelo.load("model.tflearn")  
+        if data['object'] == 'page':        
+            messaging_events = data['entry'][0]['messaging']
+            bot = Bot(PAGE_ACCESS_TOKEN)
 
-    diseases = Diseases.objects.all()
-    data = json.loads(request.data)  
+            for message in messaging_events:
+                    
+                user_id = message['sender']['id']
+                text_input = message['message'].get('text')
 
-    if data['object'] == 'page':        
-        messaging_events = data['entry'][0]['messaging']
-        bot = Bot(PAGE_ACCESS_TOKEN)
+                cubeta = [0 for _ in range(len(palabras))]            
+                entradaProcesada = nltk.word_tokenize(text_input)
+                entradaProcesada = [stemmer.stem(palabra.lower()) for palabra in entradaProcesada]
+                    
+                for palabraIndividual in entradaProcesada:
+                    for i, palabra in enumerate(palabras): 
+                        if palabra == palabraIndividual:
+                            cubeta[i] = 1
 
-        for message in messaging_events:
-                
-            user_id = message['sender']['id']
-            text_input = message['message'].get('text')
-
-            cubeta = [0 for _ in range(len(palabras))]            
-            entradaProcesada = nltk.word_tokenize(text_input)
-            entradaProcesada = [stemmer.stem(palabra.lower()) for palabra in entradaProcesada]
-                
-            for palabraIndividual in entradaProcesada:
-                for i, palabra in enumerate(palabras): 
-                    if palabra == palabraIndividual:
-                        cubeta[i] = 1
-
-            resultados = modelo.predict([numpy.array(cubeta)])            
-            resultadosIndices = numpy.argmax(resultados)
-            name = names[resultadosIndices]
-                
-            for disease in diseases:
-                if disease.name == name:
-                    response_text = disease.answer
-                
-            bot.send_text_message(user_id, response_text)
-        return 'Exitoso POST'        
-    else:
-        caso = f"El objecto es de tipo {data['object']}"
-        return caso
+                resultados = modelo.predict([numpy.array(cubeta)])            
+                resultadosIndices = numpy.argmax(resultados)
+                name = names[resultadosIndices]
+                    
+                for disease in diseases:
+                    if disease.name == name:
+                        response_text = disease.answer
+                    
+                bot.send_text_message(user_id, response_text)
+            return 'Exitoso POST'        
+        else:
+            caso = f"El objecto es de tipo {data['object']}"
+            return caso
