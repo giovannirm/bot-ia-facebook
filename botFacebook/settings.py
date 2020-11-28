@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%ywe#tnibvq17d+tp55&com03-p5a$9nbd#nndp-y%m!p^peb#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+DEBUG = True
 #new
-DEBUG = False
+#DEBUG = False
 
 #El * indica que permitiré todos los host para mi proyecto
 ALLOWED_HOSTS = ['*']
@@ -83,13 +83,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'pet',
-        'HOST': 'mongodb+srv://petvillano:123@cluster.abnui.mongodb.net/pet?retryWrites=true&w=majority',
+        'HOST': 'mongodb+srv://petvillano:123@cluster.abnui.mongodb.net/test',
         'USER': 'petvillano',
         'PASSWORD': '123',
     }
 }
-'''
 
+'''
 DATABASE = { 
     'default': { 
         'ENGINE': 'djongo', 
