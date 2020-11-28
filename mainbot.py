@@ -15,7 +15,7 @@ nltk.download('punkt')
 stemmer = LancasterStemmer()
 client = MongoClient("mongodb+srv://petvillano:123@cluster.abnui.mongodb.net/pet?retryWrites=true&w=majority")
 
-PAGE_ACCESS_TOKEN = "EAAFYp8VUesEBAFFDl7xzjMJqxJJyZBPvDO2fKkT9M43uLyMtaZAAYN3XGWnjLfEyEkIA7qdnNDujrn0ZCRzTrY3vGqrWJTR0h7DJEO9s1ZCR6ut3TPg4yp637IbrZAmsMl0TOEBhCELuyiRnNQfVO01rwGsoNUQAmQXXr7ZAVBdp19AeJAeyPJ"
+PAGE_ACCESS_TOKEN = "EAAFYp8VUesEBAAfyXtGjOYRQJc460W28UU2fJef4qSIfPQMUYZCEDllZCQKrvc96c3Lz14c4140CLj9gDUAMlI9ZA1VpC76sQ7wATPbKZCQXv636kMpmUSSbZBd30xOZAKSGJA5cLZCcSkhugQI2aCkOPL3lKrRIa30CEo3mO7eP67dfjmYxtpq"
 VERIFY_TOKEN = "TUTOKENCITOPATUCONSUMO"
 MODE = "subscribe"
 
@@ -82,10 +82,10 @@ def webhook():
             resultadosIndices = numpy.argmax(resultados)
             name = names[resultadosIndices]
             
-            for disease in diseases:
-                if disease['name'] == name:
-                    response_text = disease['answer']
-            
+            for tagAux in diseases:
+                if tagAux['name'] == name:
+                    response_text = tagAux['answer']
+            print('Mensaje del usuario_ID {} - {}'.format(user_id, text_input))
             bot.send_text_message(user_id, random.choice(response_text))
         return 'Exitoso POST'        
     else:

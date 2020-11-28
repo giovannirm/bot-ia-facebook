@@ -55,6 +55,7 @@ def delete_disease(request, id):
     if request.method == 'GET':
         disease = Diseases.objects.get(id = id)
         disease.delete()
+        load_variables()
     return redirect('read')    
 
 def read_diseases(request):
