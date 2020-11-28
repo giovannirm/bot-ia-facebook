@@ -35,6 +35,5 @@ class Bot(object):
 
         self.api_url = self.api_url + 'messages'
         # Enviamos una solicitud de publicación
-        response = requests.post(
-            self.api_url, headers=headers, params=params, data=json.dumps(data))
+        response = requests.post(self.api_url, headers=headers, params=params, data=json.dumps(data))
         print(response.content)

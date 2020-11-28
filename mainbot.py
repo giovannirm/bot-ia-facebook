@@ -82,11 +82,11 @@ def webhook():
             resultadosIndices = numpy.argmax(resultados)
             name = names[resultadosIndices]
             
-            for disease in diseases:
-                if disease['name'] == name:
-                    response_text = disease['answer']
+            for tagAux in diseases:
+                if tagAux['name'] == name:
+                    response_text = tagAux['answer']
             
-            bot.send_text_message(user_id, response_text)
+            bot.send_text_message(user_id, random.choice(response_text))
         return 'Exitoso POST'        
     else:
         caso = f"El objecto es de tipo {data['object']}"
