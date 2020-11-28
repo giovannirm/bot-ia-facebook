@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'botFacebook.urls'
@@ -77,33 +77,32 @@ WSGI_APPLICATION = 'botFacebook.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-'''
+#new
+
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'pet-villano',
-    }
-}
-'''
-#new
-import dj_database_url
-from decouple import config
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default = config('MONGODB_URI')
-    )
-}
-
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'pet',
+        'HOST': 'mongodb+srv://petvillano:123@cluster.abnui.mongodb.net/pet?retryWrites=true&w=majority',
+        'USER': 'petvillano',
+        'PASSWORD': '123',
     }
 }
 '''
 
+DATABASE = { 
+    'default': { 
+        'ENGINE': 'djongo', 
+        "CLIENT": { 
+           "name": 'pet', 
+           "host": 'mongodb+srv://petvillano:123@cluster0.abnui.mongodb.net/pet?retryWrites=true&w=majority',
+           "username": 'petvillano',
+           "contraseña": '123', 
+           "authMechanism": "SCRAM-SHA-1", 
+        }, 
+    } 
+}
+'''
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
