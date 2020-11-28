@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'botFacebook.urls'
@@ -145,9 +145,9 @@ STATIC_URL = '/static/'
 #a nivel de producción django no permite archivos estáticos
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_DIRS = {
-    os.path.join(BASE_DIR, 'static')
-}
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 #Es para mostrar archivos estáticos en nuestro proyecto como css, js, etc
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
