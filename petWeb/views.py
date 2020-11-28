@@ -13,6 +13,8 @@ from django.http import HttpResponse
 from nltk.stem.lancaster import LancasterStemmer
 from petWeb.bot import Bot
 
+nltk.download('punkt')
+
 PAGE_ACCESS_TOKEN = "EAAFYp8VUesEBAAaA1ZC1WCqvIiY09ITJPZBFRdmR6S2H28fPvFfBBTzRNYnF8AnQOXLYBbmg1cWe19DamJmxQZASujNxksZB0zhKHEj7ddWzUx93BrLuBCBYtzlrihzM6tgDGw0pvpU6OFhyQCMwBdZCFlEuhfAZBvNfFKgXBNpEnkWE0qGze0"
 
 def home(request):
