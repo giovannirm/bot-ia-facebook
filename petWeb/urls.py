@@ -3,8 +3,7 @@ from petWeb.views import *
 
 urlpatterns = [
     path('home/', home, name = "home"),
-    path('', login, name = "login"),
-    path('webhook/', webhook, name = "webhook"),
+    path('', login, name = "login"),    
     path('add_disease/', add_disease, name = "add"),
     path('update_disease/', update_disease, name = "update"),
     path('delete_disease/<int:id>', delete_disease, name = "delete"),

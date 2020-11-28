@@ -30,9 +30,10 @@ function open_modal_read(url) {
   });
 };
 
+/*
 function readDisease(rac_r, nam_r, sym_r, ans_r) {
   $("#rac_r").val(rac_r);
   $("#nam_r").val(nam_r);
   $("#sym_r").val(sym_r);
   $("#ans_r").val(ans_r);
-};
+};*/

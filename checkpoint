@@ -1,2 +1,2 @@
-model_checkpoint_path: "D:\\BOTS-PYTHON\\botFacebook\\model.tflearn"
-all_model_checkpoint_paths: "D:\\BOTS-PYTHON\\botFacebook\\model.tflearn"
+model_checkpoint_path: "D:\\BOTS-PYTHON\\botFacebook\\modelo.tflearn"
+all_model_checkpoint_paths: "D:\\BOTS-PYTHON\\botFacebook\\modelo.tflearn"
