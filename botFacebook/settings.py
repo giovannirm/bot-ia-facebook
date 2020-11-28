@@ -23,10 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%ywe#tnibvq17d+tp55&com03-p5a$9nbd#nndp-y%m!p^peb#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+#new
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+#El * indica que permitiré todos los host para mi proyecto
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'botFacebook.urls'
@@ -74,11 +77,22 @@ WSGI_APPLICATION = 'botFacebook.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'pet-villano',
     }
+}
+'''
+#new
+import dj_database_url
+from decouple import config
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default = config('MONGODB_URI')
+    )
 }
 
 '''
@@ -127,3 +141,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#new
+#a nivel de producción django no permite archivos estáticos
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = {
+    os.path.join(BASE_DIR, 'static')
+}
+
+#Es para mostrar archivos estáticos en nuestro proyecto como css, js, etc
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#
