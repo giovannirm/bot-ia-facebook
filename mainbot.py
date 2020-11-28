@@ -15,7 +15,7 @@ nltk.download('punkt')
 stemmer = LancasterStemmer()
 client = MongoClient("mongodb+srv://petvillano:123@cluster.abnui.mongodb.net/pet?retryWrites=true&w=majority")
 
-PAGE_ACCESS_TOKEN = "EAAFYp8VUesEBAAaA1ZC1WCqvIiY09ITJPZBFRdmR6S2H28fPvFfBBTzRNYnF8AnQOXLYBbmg1cWe19DamJmxQZASujNxksZB0zhKHEj7ddWzUx93BrLuBCBYtzlrihzM6tgDGw0pvpU6OFhyQCMwBdZCFlEuhfAZBvNfFKgXBNpEnkWE0qGze0"
+PAGE_ACCESS_TOKEN = "EAAFYp8VUesEBAFFDl7xzjMJqxJJyZBPvDO2fKkT9M43uLyMtaZAAYN3XGWnjLfEyEkIA7qdnNDujrn0ZCRzTrY3vGqrWJTR0h7DJEO9s1ZCR6ut3TPg4yp637IbrZAmsMl0TOEBhCELuyiRnNQfVO01rwGsoNUQAmQXXr7ZAVBdp19AeJAeyPJ"
 VERIFY_TOKEN = "TUTOKENCITOPATUCONSUMO"
 MODE = "subscribe"
 
@@ -86,7 +86,7 @@ def webhook():
                 if disease['name'] == name:
                     response_text = disease['answer']
             
-            bot.send_text_message(user_id, response_text)
+            bot.send_text_message(user_id, random.choice(response_text))
         return 'Exitoso POST'        
     else:
         caso = f"El objecto es de tipo {data['object']}"

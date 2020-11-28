@@ -2,19 +2,16 @@ import requests
 import json
 import os
 
-FACEBOOK_GRAPH_URL = "https://graph.facebook.com/v2.6/me/"
-#FACEBOOK_GRAPH_URL = os.environ.get('FACEBOOK_GRAPH_URL')
-#CONTENT_TYPE = os.environ.get('CONTENT_TYPE')
-CONTENT_TYPE = "application/json"
-
+FACEBOOK_GRAPH_URL = os.environ.get('FACEBOOK_GRAPH_URL')
+CONTENT_TYPE = os.environ.get('CONTENT_TYPE')
 
 class Bot(object):
     def __init__(self, access_token, api_url = FACEBOOK_GRAPH_URL):
         self.access_token = access_token
         self.api_url = api_url
 
-    # Enviamos el mensaje
-    def send_text_message(self, psid, message, messaging_type="RESPONSE"):
+    #Enviamos el mensaje
+    def send_text_message(self, psid, message, messaging_type = "RESPONSE"):
         headers = {
             'Content-Type': CONTENT_TYPE
         }
@@ -34,7 +31,9 @@ class Bot(object):
         }
 
         self.api_url = self.api_url + 'messages'
-        # Enviamos una solicitud de publicación
-        response = requests.post(
-            self.api_url, headers=headers, params=params, data=json.dumps(data))
+        #Enviamos una solicitud de publicación
+        response = requests.post(self.api_url,
+                                 headers = headers,
+                                 params = params,
+                                 data = json.dumps(data))
         print(response.content)

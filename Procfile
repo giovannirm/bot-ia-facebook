@@ -1,1 +1,1 @@
-web: gunicorn botFacebook.wsgi --log-file -
+web: gunicorn app:app
