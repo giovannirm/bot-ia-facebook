@@ -7,6 +7,20 @@ Entrar al cmd
 
 3.- Crear entorno(C:\Users\usuario>)
 conda create -n nombre_del_entorno python=3.6 <- version de python a instalar en el entorno
+vino por defecto en mi entorno 
+
+astroid==2.4.2
+certifi==2020.11.8
+colorama==0.4.3
+isort==5.5.2
+lazy-object-proxy==1.4.3
+mccabe==0.6.1
+pylint==2.6.0
+six==1.15.0
+toml==0.10.1
+typed-ast==1.4.1
+wincertstore==0.2
+wrapt==1.12.1
 
 4.- Activar entorno(C:\Users\usuario>)
 activate nombre_del_entorno
@@ -17,12 +31,93 @@ activate nombre_del_entorno
 
 Flask==1.1.2
 requests==2.24.0
+
 nltk==3.5
 numpy==1.18.5
 tflearn==0.3.2
 tensorflow==1.14.0
-Django==2.2.7
 djongo==1.3.3
+Django==2.2.7
+dnspython==2.0.0
+
+#Sirve para el tener el funcionamiento del framework
+Django==2.2.7
+#Sirve para la comunicación con mongodb
+#pip install djongo==1.3.3
+#1.3.2->Installing collected packages: python-dateutil, bson, djongo
+#1.3.3->Installing collected packages: djongo
+djongo==1.3.3
+#sqlparse==0.2.4
+#Se instala cuando automáticamente
+#pymongo cuando instalas el djongo
+
+#pip install nltk
+#Installing collected packages: tqdm, regex, click, joblib, nltk
+nltk==3.5
+#pip install numpy==1.18.5
+numpy==1.18.5
+#pip install tflearn==0.3.2
+#Installing collected packages: Pillow, tflearn
+tflearn==0.3.2
+#pip install tensorflow==1.14.0
+#Installing collected packages: tensorflow-estimator, keras-preprocessing, protobuf, grpcio, astor, werkzeug, absl-py, zipp, importlib-metadata, markdown, tensorboard, gast, termcolor, google-pasta, cached-property, h5py, keras-applications, tensorflow
+tensorflow==1.14.0
+#pip install pymongo
+pymongo==3.11.1
+#pip install flask
+#Installing collected packages: MarkupSafe, Jinja2, itsdangerous, flask
+Flask==1.1.2
+#Installing collected packages: chardet, urllib3, idna, requests
+#Installing collected packages: urllib3, requests
+requests==2.24.0
+#pip install dnspython esto es para que obvie el mongo_client.py
+dnspython
+gunicorn    
+#django-heroku==0.3.1
+#dj-database-url==0.5.0
+#python-decouple==3.3
+#whitenoise==5.2.0
+gunicorn
+
+
+#Sirve para el tener el funcionamiento del framework
+Django==2.2.7
+#Sirve para la comunicación con mongodb
+#pip install djongo==1.3.3
+#1.3.2->Installing collected packages: python-dateutil, bson, djongo
+#1.3.3->Installing collected packages: djongo
+djongo==1.3.3
+#sqlparse==0.2.4
+#Se instala cuando automáticamente
+#pymongo cuando instalas el djongo
+
+#pip install nltk
+#Installing collected packages: tqdm, regex, click, joblib, nltk
+nltk==3.5
+#pip install numpy==1.18.5
+numpy==1.18.5
+#pip install tflearn==0.3.2
+#Installing collected packages: Pillow, tflearn
+tflearn==0.3.2
+#pip install tensorflow==1.14.0
+#Installing collected packages: tensorflow-estimator, keras-preprocessing, protobuf, grpcio, astor, werkzeug, absl-py, zipp, importlib-metadata, markdown, tensorboard, gast, termcolor, google-pasta, cached-property, h5py, keras-applications, tensorflow
+tensorflow==1.14.0
+#pip install pymongo
+pymongo==3.11.1
+#pip install flask
+#Installing collected packages: MarkupSafe, Jinja2, itsdangerous, flask
+Flask==1.1.2
+#Installing collected packages: chardet, urllib3, idna, requests
+#Installing collected packages: urllib3, requests
+requests==2.24.0
+#pip install dnspython esto es para que obvie el mongo_client.py
+dnspython
+gunicorn    
+#django-heroku==0.3.1
+#dj-database-url==0.5.0
+#python-decouple==3.3
+#whitenoise==5.2.0
+gunicorn
 
 Repetir ese ejemplo para cada paquete
 Ejm: (chat) D:\BOTS-PYTHON\botFacebook>pip install Flask==1.1.2
@@ -48,3 +143,24 @@ Para saber que paquetes tenemos instalados en nuestro entorno
 recoger variables de heroku con distintos lenguajes
 https://www.youtube.com/watch?v=XL9cNMMJf7A&ab_channel=Heroku
 
+DISEASES.HTML
+               <!--<td>
+                {% for symptom in disease.symptom %}   
+                    <li>{{symptom}}</li>
+                {% endfor %}
+               </td>-->
+               
+<!--<div class="btn-group">                     
+                        <a onclick="open_modal_read('{% url 'modal_read' disease.id %}')" class="btn btn-info">
+                        <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                        </div>-->
+
+CONFIGURACIONES.JS
+                        /*
+function open_modal_read(url) {
+  var $ = jQuery.noConflict();
+  $("#read").load(url, function () {
+    $(this).modal("show");
+  });
+}; */

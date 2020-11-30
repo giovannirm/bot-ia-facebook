@@ -1,12 +1,11 @@
 import requests
 import json
-import os
+#import os
 
-FACEBOOK_GRAPH_URL = "https://graph.facebook.com/v2.6/me/"
 #FACEBOOK_GRAPH_URL = os.environ.get('FACEBOOK_GRAPH_URL')
 #CONTENT_TYPE = os.environ.get('CONTENT_TYPE')
+FACEBOOK_GRAPH_URL = "https://graph.facebook.com/v2.6/me/"
 CONTENT_TYPE = "application/json"
-
 
 class Bot(object):
     def __init__(self, access_token, api_url = FACEBOOK_GRAPH_URL):

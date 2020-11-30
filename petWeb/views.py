@@ -4,16 +4,10 @@ import tflearn
 import tensorflow
 import json
 import pickle
-
-from django.shortcuts import render, redirect
-from .models import Diseases
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
 from nltk.stem.lancaster import LancasterStemmer
-
-#nltk.download('punkt')
-
-PAGE_ACCESS_TOKEN = "EAAFYp8VUesEBAAaA1ZC1WCqvIiY09ITJPZBFRdmR6S2H28fPvFfBBTzRNYnF8AnQOXLYBbmg1cWe19DamJmxQZASujNxksZB0zhKHEj7ddWzUx93BrLuBCBYtzlrihzM6tgDGw0pvpU6OFhyQCMwBdZCFlEuhfAZBvNfFKgXBNpEnkWE0qGze0"
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
+from .models import Diseases
 
 def home(request):
     return render(request,'home.html')
@@ -35,8 +29,7 @@ def add_disease(request):
         disease = Diseases(name = request.POST.get('name').lower(), symptom = symptom, race = request.POST.get('race').lower(), answer = request.POST.get('answer').lower())
         disease.save()
         load_variables()
-        return redirect('read') 
-        #return HttpResponse(batch)
+        return redirect('read')         
     return render(request,'add_disease.html')
 
 @csrf_exempt
@@ -55,10 +48,11 @@ def delete_disease(request, id):
     if request.method == 'GET':
         disease = Diseases.objects.get(id = id)
         disease.delete()
+        load_variables()
     return redirect('read')    
 
 def read_diseases(request):
-    diseases = Diseases.objects.all()
+    diseases = Diseases.objects.all()    
     context = {
         'diseases': diseases
     }
@@ -105,13 +99,15 @@ def modal_read(request, id):
         }      
     return render(request,'modal_read.html', context)
 
+
 def load_variables():
+    nltk.download('punkt')
     stemmer = LancasterStemmer()
+    diseases = Diseases.objects.all()
     palabras = []
     names = []
     auxX = []
-    auxY = []  
-    diseases = Diseases.objects.all()
+    auxY = []      
     for disease in diseases: 
         for symptom in disease.symptom:
             auxPalabra = nltk.word_tokenize(symptom)
@@ -120,8 +116,6 @@ def load_variables():
             auxY.append(disease.name)        
             if disease.name not in names:            
                 names.append(disease.name)
-
-    batch_size = len(palabras)
 
     palabras = [stemmer.stem(w.lower()) for w in palabras if w != "?"]
     palabras = sorted(list(set(palabras)))
@@ -148,7 +142,7 @@ def load_variables():
     with open("variables.pickle", "wb") as archivoPickle:
         pickle.dump((palabras, names, entrenamiento, salida), archivoPickle)
 
-    tensorflow.reset_default_graph()
+    tensorflow.compat.v1.reset_default_graph
 
     red = tflearn.input_data(shape = [None, len(entrenamiento[0])])
     red = tflearn.fully_connected(red, 10)
@@ -157,5 +151,6 @@ def load_variables():
     red = tflearn.regression(red)
 
     modelo = tflearn.DNN(red)
-    modelo.fit(entrenamiento, salida, n_epoch = 1000, batch_size = batch_size, show_metric = True)
-    modelo.save("modelo.tflearn")   
+    modelo.fit(entrenamiento, salida, n_epoch = 1000, batch_size = 10, show_metric = True)
+    modelo.save("model.tflearn")   
+    

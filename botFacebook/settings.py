@@ -26,6 +26,8 @@ SECRET_KEY = '%ywe#tnibvq17d+tp55&com03-p5a$9nbd#nndp-y%m!p^peb#'
 DEBUG = True
 #new
 #DEBUG = False
+#MONGO_HOST = 'localhost' #default
+#MONGO_PORT = 27017 #default
 
 #El * indica que permitiré todos los host para mi proyecto
 ALLOWED_HOSTS = ['*']
@@ -38,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',   
+    'django.contrib.staticfiles', 
     'petWeb',
 ]
 
@@ -50,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'botFacebook.urls'
@@ -78,31 +80,31 @@ WSGI_APPLICATION = 'botFacebook.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 #new
-
+"""
 DATABASES = {
-    'default': {
+    'default': {        
         'ENGINE': 'djongo',
         'NAME': 'pet',
-        'HOST': 'mongodb+srv://petvillano:123@cluster.abnui.mongodb.net/test',
+        'HOST': 'mongodb+srv://petvillano:123@cluster.abnui.mongodb.net/test',        
         'USER': 'petvillano',
         'PASSWORD': '123',
     }
 }
+"""
 
-'''
-DATABASE = { 
-    'default': { 
-        'ENGINE': 'djongo', 
-        "CLIENT": { 
-           "name": 'pet', 
-           "host": 'mongodb+srv://petvillano:123@cluster0.abnui.mongodb.net/pet?retryWrites=true&w=majority',
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        "CLIENT": {
+           "name": 'pet',
+           "host": 'mongodb+srv://petvillano:123@cluster.abnui.mongodb.net/test',
            "username": 'petvillano',
-           "contraseña": '123', 
-           "authMechanism": "SCRAM-SHA-1", 
+           "password": '123',
+           "authMechanism": "SCRAM-SHA-1",
         }, 
-    } 
+    }
 }
-'''
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 

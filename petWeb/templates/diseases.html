@@ -41,23 +41,15 @@
         </tr>
         </thead>
         <tbody>                 
+            {% if not diseases.isEmpty %}
             {% for disease in diseases %}
             <tr>
                <td>{{disease.race}}</td>
                <td>{{disease.name}}</td>
-               <!--<td>
-                {% for symptom in disease.symptom %}   
-                    <li>{{symptom}}</li>
-                {% endfor %}
-               </td>-->
                <td> 
                    <center>
+                        
                         <div class="btn-group">                     
-                        <a onclick="open_modal_read('{% url 'modal_read' disease.id%}')" class="btn btn-info">
-                        <span class="glyphicon glyphicon-search"></span>
-                        </a>
-                        </div>
-                        <!--<div class="btn-group">                     
                         <a onclick='readDisease(
                         "{{disease.race}}",
                         "{{disease.name}}",
@@ -65,13 +57,13 @@
                         "{{disease.answer}}")' class="btn btn-info" data-toggle="modal" data-target="#read">
                         <span class="glyphicon glyphicon-search"></span>
                         </a>
-                        </div>-->                                     
+                        </div>
                     </center>
                 </td>        
                 <td>
                     <center> 
                         <div class="btn-group">
-                        <button onclick="open_modal_update('{% url 'modal_update' disease.id%}')" class="btn btn-warning">
+                        <button onclick="open_modal_update('{% url 'modal_update' disease.id %}')" class="btn btn-warning">
                         <span class="fa fa-pencil"></span>
                         </button>
                         </div>
@@ -88,6 +80,7 @@
                 </td>                      
             </tr>
             {% endfor %}
+            {% endif %}
         </tbody>
         </table>
     </div>
