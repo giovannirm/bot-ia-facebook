@@ -168,7 +168,7 @@ def webhook():
 
             for disease in diseases:
                 if disease['name'] == name:
-                    response_text = disease['name'] ": "+ disease['answer']
+                    response_text = disease['name'] + ": " + disease['answer']
             #print(response_text)
             bot.send_text_message(user_id, response_text)
         return 'Exitoso POST'        
