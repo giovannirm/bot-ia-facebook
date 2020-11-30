@@ -1,11 +1,4 @@
-Para compilar el proyecto
-
-1.- Descargar Anaconda(servirá como entorno virtual)
-2.- Descargar MongoDb(será la BD del proyecto)
-
-Entrar al cmd
-
-3.- Crear entorno(C:\Users\usuario>)
+crear entorno
 conda create -n nombre_del_entorno python=3.6 <- version de python a instalar en el entorno
 vino por defecto en mi entorno 
 
@@ -125,20 +118,7 @@ Ejm: (chat) D:\BOTS-PYTHON\botFacebook>pip install Flask==1.1.2
 DATO:
 -----------------------------------------------------------------
 Para saber que paquetes tenemos instalados en nuestro entorno
-(chat) D:\BOTS-PYTHON\botFacebook>pip freeze
------------------------------------------------------------------
-
-7.- Ejecutar el siguiente comando,
-    es para que en la carpeta petWeb/migrations cree el modelo de nuestra bd
-(chat) D:\BOTS-PYTHON\botFacebook>python manage.py makemigrations
-
-8.- Ejecutar el siguiente comando,
-    es para que cree la bd junto con las colecciones en mongodb
-(chat) D:\BOTS-PYTHON\botFacebook>python manage.py migrate
-
-9.- Ejecutar el siguiente comando,
-    es para ejecutar el proyecto
-(chat) D:\BOTS-PYTHON\botFacebook>python manage.py runserver
+(facebook) C:\Users\usuario>pip freeze
 
 recoger variables de heroku con distintos lenguajes
 https://www.youtube.com/watch?v=XL9cNMMJf7A&ab_channel=Heroku
