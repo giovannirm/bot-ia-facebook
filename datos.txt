@@ -129,18 +129,3 @@ DISEASES.HTML
                     <li>{{symptom}}</li>
                 {% endfor %}
                </td>-->
-               
-<!--<div class="btn-group">                     
-                        <a onclick="open_modal_read('{% url 'modal_read' disease.id %}')" class="btn btn-info">
-                        <span class="glyphicon glyphicon-search"></span>
-                        </a>
-                        </div>-->
-
-CONFIGURACIONES.JS
-                        /*
-function open_modal_read(url) {
-  var $ = jQuery.noConflict();
-  $("#read").load(url, function () {
-    $(this).modal("show");
-  });
-}; */

@@ -23,9 +23,17 @@ function open_modal_update(url) {
   });
 };
 
+function open_modal_read(url) {
+  var $ = jQuery.noConflict();
+  $("#read").load(url, function () {
+    $(this).modal("show");
+  });
+};
+
+/*
 function readDisease(rac_r, nam_r, sym_r, ans_r) {
   $("#rac_r").val(rac_r);
   $("#nam_r").val(nam_r);
   $("#sym_r").val(sym_r);
   $("#ans_r").val(ans_r);
-};
+};*/
