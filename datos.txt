@@ -129,3 +129,12 @@ DISEASES.HTML
                     <li>{{symptom}}</li>
                 {% endfor %}
                </td>-->
+<!--<div class="btn-group">                     
+                        <a onclick='readDisease(
+                        "{{disease.race}}",
+                        "{{disease.name}}",
+                        "{{disease.symptom}}",
+                        "{{disease.answer}}")' class="btn btn-info" data-toggle="modal" data-target="#read">
+                        <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                        </div>-->
