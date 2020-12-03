@@ -24,7 +24,7 @@ class Bot(object):
                 'id': psid
             },
             'message': {
-                'text': message
+                'text': message,                
             }
         }
 
@@ -38,4 +38,4 @@ class Bot(object):
                                  headers = headers,
                                  params = params,
                                  data = json.dumps(data))
-        print(response.content)
+        print(response.content)   

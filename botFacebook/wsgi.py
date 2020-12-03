@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'botFacebook.settings')
+#os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'botFacebook.settings')
+#new
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'botFacebook.settings.local')
 
 application = get_wsgi_application()

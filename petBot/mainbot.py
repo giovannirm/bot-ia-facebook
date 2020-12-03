@@ -22,7 +22,7 @@ nltk.download('punkt')
 stemmer = LancasterStemmer()
 client = MongoClient("mongodb+srv://petvillano:123@cluster.abnui.mongodb.net/pet?retryWrites=true&w=majority")
 
-PAGE_ACCESS_TOKEN = "EAAJm7lO5XNsBAAcF3TiOHj93yDiQSZBY7E7SshtRbEqc2bhnPcP5aCB5186xi0t099s1ikdyNsxEVRUIgr2oz20EBOkQvZAZC7EuZACMucqowVAIrTptbd0Prxn3MfeYZCghdl8YwH6JIRfJxbcSNfun1pQWrFBrwJ2qAfrg3Fhp9VFPRKpND"
+PAGE_ACCESS_TOKEN = "EAAKLvqRwtZBQBAOn4ioqaDkw4MlmJTSIBVwTYJaDwVyInhl5kg9latKwn6RXL87BDucfQkEjau1SoYGo1KUuGriNa9cvtJ1Lhn2YO4zp5qAgZAVDHDPUhpMffvEptaZB5b28kFcjZBpA2WMG9f2HCjdFXXbBQABa5PzAifRlgE6XsDzjeZBKJ"
 VERIFY_TOKEN = "TUTOKENCITOPATUCONSUMO"
 MODE = "subscribe"
 
@@ -148,8 +148,15 @@ def webhook():
             
             user_id = message['sender']['id']            
             #text_input = message['message'].get('text')
+            print(f"USER_ID: {user_id}")
+            print(message)
+            #text_input = message['message'].get('text')            
             text_input = message['message']['text']
+            #print(text_input)
+            print(f"TEXT_INPUT: {text_input}")
             print('Mensaje del usuario_ID {} - {}'.format(user_id, text_input))
+
+
             cubeta = [0 for _ in range(len(palabras))]            
             entradaProcesada = nltk.word_tokenize(text_input)
             entradaProcesada = [stemmer.stem(palabra.lower()) for palabra in entradaProcesada]
