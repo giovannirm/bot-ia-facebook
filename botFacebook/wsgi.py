@@ -15,4 +15,9 @@ from django.core.wsgi import get_wsgi_application
 #new
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'botFacebook.settings.production')
 
-application = get_wsgi_application()
+#application = get_wsgi_application()
+#new
+
+from dj_static import Cling
+
+application = Cling(get_wsgi_application())
