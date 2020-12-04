@@ -16,7 +16,7 @@ def login(request):
     if request.method =='POST':                
         user = request.POST['user']
         password = request.POST['password']
-        if user == 'admin' and password == 'admin':
+        if user == 'root' and password == '123':
             return redirect('home')
         else:
             return redirect('login')
