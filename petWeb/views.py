@@ -150,7 +150,8 @@ def load_variables():
     with open("variables.pickle", "wb") as archivoPickle:
         pickle.dump((palabras, names, entrenamiento, salida), archivoPickle)
 
-    tensorflow.reset_default_graph()
+    tensorflow.compat.v1.reset_default_graph()
+    #tensorflow.reset_default_graph()
 
     red = tflearn.input_data(shape = [None, len(entrenamiento[0])])
     red = tflearn.fully_connected(red, 10)
@@ -194,8 +195,8 @@ class Webhook(generic.View):
         with open("variables.pickle", "rb") as archivoPickle:
             palabras, names, entrenamiento, salida = pickle.load(archivoPickle)
         
-        #tensorflow.compat.v1.reset_default_graph
-        tensorflow.reset_default_graph()
+        tensorflow.compat.v1.reset_default_graph()
+        #tensorflow.reset_default_graph()
 
         red = tflearn.input_data(shape = [None, len(entrenamiento[0])])
         red = tflearn.fully_connected(red, 10)
