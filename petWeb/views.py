@@ -1,10 +1,10 @@
-import nltk
-import numpy
-import tflearn
-import tensorflow
-import json
-import pickle
-from nltk.stem.lancaster import LancasterStemmer
+#import nltk
+#import numpy
+#import tflearn
+#import tensorflow
+#import json
+#import pickle
+#from nltk.stem.lancaster import LancasterStemmer
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from .models import Diseases
@@ -28,7 +28,7 @@ def add_disease(request):
         symptom = request.POST.get('symptom').lower().split(', ')        
         disease = Diseases(name = request.POST.get('name').lower(), symptom = symptom, race = request.POST.get('race').lower(), answer = request.POST.get('answer').lower())
         disease.save()
-        load_variables()
+        #load_variables()
         return redirect('read')         
     return render(request,'add_disease.html')
 
@@ -41,14 +41,14 @@ def update_disease(request):
     disease.symptom = request.POST.get('symptom').lower().split(', ')
     disease.answer = request.POST.get('answer').lower()
     disease.save()
-    load_variables()
+    #load_variables()
     return redirect('read')
  
 def delete_disease(request, id): 
     if request.method == 'GET':
         disease = Diseases.objects.get(id = id)
         disease.delete()
-        load_variables()
+        #load_variables()
     return redirect('read')    
 
 def read_diseases(request):
@@ -99,7 +99,7 @@ def modal_read(request, id):
         }      
     return render(request,'modal_read.html', context)
 
-
+"""
 def load_variables():
     nltk.download('punkt')
     stemmer = LancasterStemmer()
@@ -153,4 +153,4 @@ def load_variables():
     modelo = tflearn.DNN(red)
     modelo.fit(entrenamiento, salida, n_epoch = 1000, batch_size = 10, show_metric = True)
     modelo.save("model.tflearn")   
-    
+"""
