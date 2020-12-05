@@ -7,13 +7,13 @@
                 <h4 class="modal-title">Modificar datos de la enfermedad congénita</h4>
             </div>                        
             <div class="modal-body">
-                <div class="form-group">  
-                    <h5 class="box-title">Enfermedad congénita</h5>
-                    <input name="name" class="form-control" value="{{name}}" type="text" maxlength="100">
+                <div class="form-group">                      
                     <h5 class="box-title">Raza</h5> 
                     <input name="race" class="form-control" value="{{race}}" type="text" maxlength="30">
+                    <h5 class="box-title">Enfermedad congénita</h5>
+                    <input name="name" class="form-control" value="{{name}}" type="text" maxlength="100">
                     <h5 class="box-title">Síntomas</h5>
-                    <input name="symptom" class="form-control" value="{{symptom}}" type="text">
+                    <input name="symptom" class="form-control" value="{{symptom}}" type="text" title="El formato sigue una coma más el espacio entre síntomas -> Ejm: Síntoma1, Síntoma2, ..."  pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{}" data-toggle="tooltip" data-placement="top">
                     <h5 class="box-title">Respuesta</h5>
                     <input name="answer" class="form-control" value="{{answer}}" type="text">
                 </div>       

@@ -43,6 +43,7 @@
         <tbody>                 
             {% if not diseases.isEmpty %}
             {% for disease in diseases %}
+            {% if disease.name not in tags %}
             <tr>
                <td>{{disease.race}}</td>
                <td>{{disease.name}}</td>
@@ -74,6 +75,7 @@
                     </center>
                 </td>                      
             </tr>
+            {% endif %}
             {% endfor %}
             {% endif %}
         </tbody>
@@ -87,10 +89,10 @@
                 </div>                
                 <div class="modal-body">                        
                     <div class="form-group"> 
-                        <h5 class="box-title">Enfermedad congénita</h5>
-                        <input disabled="" class="form-control" type="text" id="nam_r">
                         <h5 class="box-title">Raza</h5>
                         <input disabled="" class="form-control" type="text" id="rac_r">
+                        <h5 class="box-title">Enfermedad congénita</h5>
+                        <input disabled="" class="form-control" type="text" id="nam_r">                        
                         <h5 class="box-title">Síntomas</h5>
                         <input disabled="" class="form-control" type="text" id="sym_r">
                         <h5 class="box-title">Respuesta</h5>

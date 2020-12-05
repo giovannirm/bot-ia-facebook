@@ -18,6 +18,8 @@ from petBot.bot import Bot
 
 nltk.download('punkt')
 
+tags = ['saludo', 'despedida', 'consulta']
+
 def home(request):
     return render(request,'home.html')
  
@@ -61,9 +63,10 @@ def delete_disease(request, id):
     return redirect('read')    
 
 def read_diseases(request):
-    diseases = Diseases.objects.all()    
+    diseases = Diseases.objects.all()        
     context = {
-        'diseases': diseases
+        'diseases': diseases,
+        'tags': tags,
     }
     return render(request,'diseases.html', context)
 
@@ -188,7 +191,7 @@ class Webhook(generic.View):
         return generic.View.dispatch(self, request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        PAGE_ACCESS_TOKEN = "EAABZBmfvibugBAOZCV5M3mkESZBzoZCLRtdZAK67NkA3Mi7LyEIUsiZBYhZCI6DTpX6AvSXh1atGtoeqBsPjgxJH3m0RjClyVxSSKtAduoZBrIGBKm6GWNTZArettxhYLx8qgCx7pbRSU2ulNIdVYzZCGZBwcwPZCp8BZBDtI0eP5TNeTbIoefZCwPpoVZC"    
+        PAGE_ACCESS_TOKEN = "EAAFwexrc6MMBAKpQOsjgExNHXjH5wc3OgRtIweZC8ZChzUhET9EZBLIAzUJqIWI2yutciZBuSMZAW17zRt8ODsMfMt0J34uuRVTNhFJcXv96qe9OobpZCATwpDBCnzemqiN9z704bnUv8wpt2yVy4AGlltrP7KpZC0ZBXhU3GxiZAyOJfUQLZA2OZBl"    
         stemmer = LancasterStemmer()
         diseases = Diseases.objects.all()
         
@@ -211,35 +214,55 @@ class Webhook(generic.View):
         print(data)
         bot = Bot(PAGE_ACCESS_TOKEN)
 
-        if data['object'] == 'page':        
-            messaging_events = data['entry'][0]['messaging']    
+        if data['object'] == 'page':   
+            messaging_events = data['entry'][0]['messaging']  
             for message in messaging_events:                
-                user_id = message['sender']['id']      
-                #text_input = message['message'].get('text')            
-                text_input = message['message']['text']
-                print('Mensaje del usuario_ID {} - {}'.format(user_id, text_input))
+                user_id = message['sender']['id']                 
+                if 'message' in message:
+                    if 'text' in message['message']:              
+                        text_input = message['message']['text']
+                        print('Mensaje del usuario_ID {} - {}'.format(user_id, text_input))
+                        
+                        cubeta = [0 for _ in range(len(palabras))]            
+                        entradaProcesada = nltk.word_tokenize(text_input)
+                        entradaProcesada = [stemmer.stem(palabra.lower()) for palabra in entradaProcesada]
+                            
+                        for palabraIndividual in entradaProcesada:
+                            for i, palabra in enumerate(palabras): 
+                                if palabra == palabraIndividual:
+                                    cubeta[i] = 1
 
-                cubeta = [0 for _ in range(len(palabras))]            
-                entradaProcesada = nltk.word_tokenize(text_input)
-                entradaProcesada = [stemmer.stem(palabra.lower()) for palabra in entradaProcesada]
-                
-                for palabraIndividual in entradaProcesada:
-                    for i, palabra in enumerate(palabras): 
-                        if palabra == palabraIndividual:
-                            cubeta[i] = 1
+                        #print(cubeta)
+                        resultados = modelo.predict([numpy.array(cubeta)])            
+                        resultadosIndices = numpy.argmax(resultados)
+                        name = names[resultadosIndices]
+                        #print(name)
+                        #response_text = ""
 
-                #print(cubeta)
-                resultados = modelo.predict([numpy.array(cubeta)])            
-                resultadosIndices = numpy.argmax(resultados)
-                name = names[resultadosIndices]
-                #print(name)
-                response_text = ""
-
-                for disease in diseases:
-                    if disease.name == name:
-                        response_text = disease.answer
-                #print(response_text)
-                bot.send_text_message(user_id, response_text)
+                        if name not in tags: 
+                            for disease in diseases:                                                
+                                if disease.name == name:
+                                    response_text = "La enfermedad de su can es " + disease.name + ", " + disease.answer                    
+                                    bot.send_text_message(user_id, response_text)                            
+                        else:
+                            if name == 'consulta':
+                                bot.send_text_confirmation(user_id)
+                            else:
+                                for disease in diseases:
+                                    if disease.name == name:
+                                        response_text = disease.answer
+                                        bot.send_text_message(user_id, response_text)                            
+                    else:                    
+                        response_text = "Disculpa pero creo que aún no soy tan inteligente como para entenderte 😢"
+                        bot.send_text_message(user_id, response_text)                          
+                else:
+                    payload = message['postback']['payload']
+                    if payload == 'yes':
+                        response_text = "Necesito que me digas los síntomas de tu can para poder darle un posible diagnóstico"
+                        bot.send_text_message(user_id, response_text)                                                  
+                    elif payload == 'no':
+                        response_text = "Por ahora solo cuento con la función de diagnosticar canes, en algún futuro podré tener más conocimientos y te ofreceré más de mis funciones 🤞"
+                        bot.send_text_message(user_id, response_text)                          
             return HttpResponse('Exitoso POST')
         else:
             caso = f"El objecto es de tipo {data['object']}"
