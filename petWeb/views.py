@@ -4,6 +4,7 @@ import tflearn
 import tensorflow
 import json
 import pickle
+import os
 from nltk.stem.lancaster import LancasterStemmer
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -168,9 +169,11 @@ def load_variables():
 
 class Webhook(generic.View):
     def get(self, request, *args, **kwargs):
-        VERIFY_TOKEN = "TUTOKENCITOPATUCONSUMO"
-        MODE = "subscribe"
-      
+        #VERIFY_TOKEN = "TUTOKENCITOPATUCONSUMO"
+	VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN')
+        #MODE = "subscribe"
+      	MODE = os.environ.get('MODE')
+
         token = request.GET['hub.verify_token']               
         challenge = request.GET['hub.challenge']
         mode = request.GET['hub.mode']
@@ -191,7 +194,8 @@ class Webhook(generic.View):
         return generic.View.dispatch(self, request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        PAGE_ACCESS_TOKEN = "EAAFwexrc6MMBAKpQOsjgExNHXjH5wc3OgRtIweZC8ZChzUhET9EZBLIAzUJqIWI2yutciZBuSMZAW17zRt8ODsMfMt0J34uuRVTNhFJcXv96qe9OobpZCATwpDBCnzemqiN9z704bnUv8wpt2yVy4AGlltrP7KpZC0ZBXhU3GxiZAyOJfUQLZA2OZBl"    
+        #PAGE_ACCESS_TOKEN = "EAAFwexrc6MMBAKpQOsjgExNHXjH5wc3OgRtIweZC8ZChzUhET9EZBLIAzUJqIWI2yutciZBuSMZAW17zRt8ODsMfMt0J34uuRVTNhFJcXv96qe9OobpZCATwpDBCnzemqiN9z704bnUv8wpt2yVy4AGlltrP7KpZC0ZBXhU3GxiZAyOJfUQLZA2OZBl"    
+	PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
         stemmer = LancasterStemmer()
         diseases = Diseases.objects.all()
         
