@@ -1,2 +1,2 @@
-model_checkpoint_path: "D:\\BOTS-PYTHON\\bot-ia-facebook\\model.tflearn"
-all_model_checkpoint_paths: "D:\\BOTS-PYTHON\\bot-ia-facebook\\model.tflearn"
+model_checkpoint_path: "bot-ia-facebook.herokuapp.com\\model.tflearn"
+all_model_checkpoint_paths: "bot-ia-facebook.herokuapp.com\\model.tflearn"
