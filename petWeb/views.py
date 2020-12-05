@@ -20,6 +20,9 @@ from petBot.bot import Bot
 nltk.download('punkt')
 
 tags = ['saludo', 'despedida', 'consulta']
+VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN')
+MODE = os.environ.get('MODE')
+PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
 
 def home(request):
     return render(request,'home.html')
@@ -169,11 +172,8 @@ def load_variables():
 
 class Webhook(generic.View):
     def get(self, request, *args, **kwargs):
-        #VERIFY_TOKEN = "TUTOKENCITOPATUCONSUMO"
-	    VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN')
+        #VERIFY_TOKEN = "TUTOKENCITOPATUCONSUMO"   
         #MODE = "subscribe"
-      	MODE = os.environ.get('MODE')
-
         token = request.GET['hub.verify_token']               
         challenge = request.GET['hub.challenge']
         mode = request.GET['hub.mode']
@@ -194,8 +194,7 @@ class Webhook(generic.View):
         return generic.View.dispatch(self, request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        #PAGE_ACCESS_TOKEN = "EAAFwexrc6MMBAKpQOsjgExNHXjH5wc3OgRtIweZC8ZChzUhET9EZBLIAzUJqIWI2yutciZBuSMZAW17zRt8ODsMfMt0J34uuRVTNhFJcXv96qe9OobpZCATwpDBCnzemqiN9z704bnUv8wpt2yVy4AGlltrP7KpZC0ZBXhU3GxiZAyOJfUQLZA2OZBl"    
-	    PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
+        #PAGE_ACCESS_TOKEN = "EAAFwexrc6MMBAKpQOsjgExNHXjH5wc3OgRtIweZC8ZChzUhET9EZBLIAzUJqIWI2yutciZBuSMZAW17zRt8ODsMfMt0J34uuRVTNhFJcXv96qe9OobpZCATwpDBCnzemqiN9z704bnUv8wpt2yVy4AGlltrP7KpZC0ZBXhU3GxiZAyOJfUQLZA2OZBl"    	    
         stemmer = LancasterStemmer()
         diseases = Diseases.objects.all()
         
